@@ -3,6 +3,7 @@ import MaxWidthWrapper from './max-width-wrapper'
 import { Icons } from './icons'
 import NavItems from './nav-items'
 import { buttonVariants } from './ui/button'
+import Cart from './cart'
 
 export default function Navbar() {
 	const user = null
@@ -30,7 +31,7 @@ export default function Navbar() {
 												variant: 'ghost'
 											})}
 										>
-											Sign in
+											Sign In
 										</Link>
 									)}
 									{user ? null : (
@@ -48,7 +49,7 @@ export default function Navbar() {
 												variant: 'ghost'
 											})}
 										>
-											Create account
+											Create Account
 										</Link>
 									)}
 									{user ? (
@@ -66,7 +67,7 @@ export default function Navbar() {
 										</div>
 									)}
 									<div className='ml-4 flow-root lg:ml-6'>
-										{/* <Cart /> */}
+										<Cart />
 									</div>
 								</div>
 							</div>

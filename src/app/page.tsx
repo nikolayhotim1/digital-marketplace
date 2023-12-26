@@ -36,7 +36,7 @@ export default function Home() {
 						</span>
 					</h1>
 					<p className='mt-6 text-lg max-w-prose text-muted-foreground'>
-						Welcome to Digital Hippo! Every asset on our
+						Welcome to <b>Digital Hippo</b>! Every asset on our
 						platform is verified by our team to ensure our
 						highest quality standards.
 					</p>
@@ -48,7 +48,7 @@ export default function Home() {
 							Browse Trending
 						</Link>
 						<Button variant='ghost'>
-							Our quality promise &rarr;
+							Our Quality Promise &rarr;
 						</Button>
 					</div>
 				</div>
