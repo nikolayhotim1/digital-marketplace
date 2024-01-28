@@ -1,4 +1,5 @@
 import MaxWidthWrapper from '@/components/max-width-wrapper'
+import ProductReel from '@/components/product-reel'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { ArrowDownToLine, CheckCircle, Leaf } from 'lucide-react'
 import Link from 'next/link'
@@ -31,20 +32,15 @@ export default function Home() {
 				<div className='py-20 mx-auto text-center flex flex-col items-center max-w-3xl'>
 					<h1 className='text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>
 						Your marketplace for high-quality{' '}
-						<span className='text-blue-600'>
-							digital assets
-						</span>
+						<span className='text-blue-600'>digital assets</span>
 					</h1>
 					<p className='mt-6 text-lg max-w-prose text-muted-foreground'>
 						Welcome to <b>Digital Hippo</b>! Every asset on our
-						platform is verified by our team to ensure our
-						highest quality standards.
+						platform is verified by our team to ensure our highest
+						quality standards.
 					</p>
 					<div className='flex flex-col sm:flex-row gap-4 mt-6'>
-						<Link
-							href='/products'
-							className={buttonVariants()}
-						>
+						<Link href='/products' className={buttonVariants()}>
 							Browse Trending
 						</Link>
 						<Button variant='ghost'>
@@ -52,7 +48,11 @@ export default function Home() {
 						</Button>
 					</div>
 				</div>
-				{/* TODO: Products List */}
+				<ProductReel
+					query={{ sort: 'desc', limit: 4 }}
+					href='/products?sort=recent'
+					title='Brand new'
+				/>
 			</MaxWidthWrapper>
 			<section className='border-t border-gray-200 bg-gray-50'>
 				<MaxWidthWrapper className='py-20'>
@@ -64,9 +64,7 @@ export default function Home() {
 							>
 								<div className='md:flex-shrink-0 flex justify-center'>
 									<div className='h-16 w-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-900'>
-										{
-											<perk.Icon className='w-1/3 h-1/3' />
-										}
+										{<perk.Icon className='w-1/3 h-1/3' />}
 									</div>
 								</div>
 								<div className='mt-6 md:ml-4 md:mt-0 lg:ml-0 lg:mt-6'>
