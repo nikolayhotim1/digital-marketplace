@@ -1,17 +1,15 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { cn } from '@/lib/utils'
+import { cn, constructMetadata } from '@/lib/utils'
 import Navbar from '@/components/navbar'
 import Providers from '../components/providers'
 import { Toaster } from 'sonner'
+import Footer from '@/components/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-	title: 'Digital Hippo',
-	description: 'Modern E-Commerce Marketplace for Digital Products'
-}
+export const metadata = constructMetadata()
 
 export default function RootLayout({
 	children
@@ -26,10 +24,11 @@ export default function RootLayout({
 					inter.className
 				)}
 			>
-				<main className='relative flex flex-col max-h-screen'>
+				<main className='relative flex flex-col min-h-screen'>
 					<Providers>
 						<Navbar />
 						<div className='flex-grow flex-1'>{children}</div>
+						<Footer />
 					</Providers>
 				</main>
 				<Toaster position='top-center' richColors />
