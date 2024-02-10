@@ -52,8 +52,8 @@ var isAuth = middleware(function (_a) {
             }
             return [2 /*return*/, next({
                     ctx: {
-                        user: user
-                    }
+                        user: user,
+                    },
                 })];
         });
     });

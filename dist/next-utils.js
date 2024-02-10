@@ -7,7 +7,7 @@ exports.nextHandler = exports.nextApp = void 0;
 var next_1 = __importDefault(require("next"));
 var PORT = Number(process.env.PORT) || 3000;
 exports.nextApp = (0, next_1.default)({
-    dev: process.env.NODE_ENV !== 'production',
+    dev: process.env.NODE_ENV !== "production",
     port: PORT
 });
 exports.nextHandler = exports.nextApp.getRequestHandler();

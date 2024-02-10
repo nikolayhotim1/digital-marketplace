@@ -77,7 +77,7 @@ var syncUser = function (_a) {
             switch (_b.label) {
                 case 0: return [4 /*yield*/, req.payload.findByID({
                         collection: 'users',
-                        id: req.user.id
+                        id: req.user.id,
                     })];
                 case 1:
                     fullUser = _b.sent();
@@ -92,8 +92,8 @@ var syncUser = function (_a) {
                             collection: 'users',
                             id: fullUser.id,
                             data: {
-                                products: dataToUpdate
-                            }
+                                products: dataToUpdate,
+                            },
                         })];
                 case 2:
                     _b.sent();
@@ -107,12 +107,10 @@ var isAdminOrHasAccess = function () {
     return function (_a) {
         var _user = _a.req.user;
         var user = _user;
-        if (!user) {
+        if (!user)
             return false;
-        }
-        if (user.role === 'admin') {
+        if (user.role === 'admin')
             return true;
-        }
         var userProductIDs = (user.products || []).reduce(function (acc, product) {
             if (!product)
                 return acc;
@@ -126,20 +124,20 @@ var isAdminOrHasAccess = function () {
         }, []);
         return {
             id: {
-                in: userProductIDs
-            }
+                in: userProductIDs,
+            },
         };
     };
 };
 exports.Products = {
     slug: 'products',
     admin: {
-        useAsTitle: 'name'
+        useAsTitle: 'name',
     },
     access: {
         read: isAdminOrHasAccess(),
         update: isAdminOrHasAccess(),
-        delete: isAdminOrHasAccess()
+        delete: isAdminOrHasAccess(),
     },
     hooks: {
         afterChange: [syncUser],
@@ -156,8 +154,8 @@ exports.Products = {
                                     name: data.name,
                                     default_price_data: {
                                         currency: 'USD',
-                                        unit_amount: Math.round(data.price * 100)
-                                    }
+                                        unit_amount: Math.round(data.price * 100),
+                                    },
                                 })];
                         case 1:
                             createdProduct = _a.sent();
@@ -168,7 +166,7 @@ exports.Products = {
                             data = args.data;
                             return [4 /*yield*/, stripe_1.stripe.products.update(data.stripeId, {
                                     name: data.name,
-                                    default_price: data.priceId
+                                    default_price: data.priceId,
                                 })];
                         case 3:
                             updatedProduct = _a.sent();
@@ -177,8 +175,8 @@ exports.Products = {
                         case 4: return [2 /*return*/];
                     }
                 });
-            }); }
-        ]
+            }); },
+        ],
     },
     fields: [
         {
@@ -188,19 +186,19 @@ exports.Products = {
             required: true,
             hasMany: false,
             admin: {
-                condition: function () { return false; }
-            }
+                condition: function () { return false; },
+            },
         },
         {
             name: 'name',
             label: 'Name',
             type: 'text',
-            required: true
+            required: true,
         },
         {
             name: 'description',
             type: 'textarea',
-            label: 'Product details'
+            label: 'Product details',
         },
         {
             name: 'price',
@@ -208,7 +206,7 @@ exports.Products = {
             min: 0,
             max: 1000,
             type: 'number',
-            required: true
+            required: true,
         },
         {
             name: 'category',
@@ -216,12 +214,9 @@ exports.Products = {
             type: 'select',
             options: config_1.PRODUCT_CATEGORIES.map(function (_a) {
                 var label = _a.label, value = _a.value;
-                return ({
-                    label: label,
-                    value: value
-                });
+                return ({ label: label, value: value });
             }),
-            required: true
+            required: true,
         },
         {
             name: 'product_files',
@@ -229,7 +224,7 @@ exports.Products = {
             type: 'relationship',
             required: true,
             relationTo: 'product_files',
-            hasMany: false
+            hasMany: false,
         },
         {
             name: 'approvedForSale',
@@ -248,46 +243,46 @@ exports.Products = {
                 update: function (_a) {
                     var req = _a.req;
                     return req.user.role === 'admin';
-                }
+                },
             },
             options: [
                 {
                     label: 'Pending verification',
-                    value: 'pending'
+                    value: 'pending',
                 },
                 {
                     label: 'Approved',
-                    value: 'approved'
+                    value: 'approved',
                 },
                 {
                     label: 'Denied',
-                    value: 'denied'
-                }
-            ]
+                    value: 'denied',
+                },
+            ],
         },
         {
             name: 'priceId',
             access: {
                 create: function () { return false; },
                 read: function () { return false; },
-                update: function () { return false; }
+                update: function () { return false; },
             },
             type: 'text',
             admin: {
-                hidden: true
-            }
+                hidden: true,
+            },
         },
         {
             name: 'stripeId',
             access: {
                 create: function () { return false; },
                 read: function () { return false; },
-                update: function () { return false; }
+                update: function () { return false; },
             },
             type: 'text',
             admin: {
-                hidden: true
-            }
+                hidden: true,
+            },
         },
         {
             name: 'images',
@@ -298,16 +293,16 @@ exports.Products = {
             required: true,
             labels: {
                 singular: 'Image',
-                plural: 'Images'
+                plural: 'Images',
             },
             fields: [
                 {
                     name: 'image',
                     type: 'upload',
                     relationTo: 'media',
-                    required: true
-                }
-            ]
-        }
-    ]
+                    required: true,
+                },
+            ],
+        },
+    ],
 };

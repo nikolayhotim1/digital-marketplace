@@ -62,22 +62,21 @@ exports.authRouter = (0, trpc_1.router)({
                                 collection: 'users',
                                 where: {
                                     email: {
-                                        equals: email
-                                    }
-                                }
+                                        equals: email,
+                                    },
+                                },
                             })];
                     case 2:
                         users = (_b.sent()).docs;
-                        if (users.length !== 0) {
+                        if (users.length !== 0)
                             throw new server_1.TRPCError({ code: 'CONFLICT' });
-                        }
                         return [4 /*yield*/, payload.create({
                                 collection: 'users',
                                 data: {
                                     email: email,
                                     password: password,
-                                    role: 'user'
-                                }
+                                    role: 'user',
+                                },
                             })];
                     case 3:
                         _b.sent();
@@ -101,13 +100,12 @@ exports.authRouter = (0, trpc_1.router)({
                         payload = _b.sent();
                         return [4 /*yield*/, payload.verifyEmail({
                                 collection: 'users',
-                                token: token
+                                token: token,
                             })];
                     case 2:
                         isVerified = _b.sent();
-                        if (!isVerified) {
+                        if (!isVerified)
                             throw new server_1.TRPCError({ code: 'UNAUTHORIZED' });
-                        }
                         return [2 /*return*/, { success: true }];
                 }
             });
@@ -134,9 +132,9 @@ exports.authRouter = (0, trpc_1.router)({
                                 collection: 'users',
                                 data: {
                                     email: email,
-                                    password: password
+                                    password: password,
                                 },
-                                res: res
+                                res: res,
                             })];
                     case 3:
                         _b.sent();
@@ -148,5 +146,5 @@ exports.authRouter = (0, trpc_1.router)({
                 }
             });
         });
-    })
+    }),
 });

@@ -30,7 +30,7 @@ function formatPrice(price, options) {
         style: 'currency',
         currency: currency,
         notation: notation,
-        maximumFractionDigits: 2
+        maximumFractionDigits: 2,
     }).format(numericPrice);
 }
 exports.formatPrice = formatPrice;
@@ -41,20 +41,20 @@ function constructMetadata(_a) {
             description: description,
             images: [
                 {
-                    url: image
-                }
-            ]
+                    url: image,
+                },
+            ],
         }, twitter: {
             card: 'summary_large_image',
             title: title,
             description: description,
             images: [image],
-            creator: '@joshtriedcoding'
+            creator: '@joshtriedcoding',
         }, icons: icons, metadataBase: new URL('https://digitalhippo.up.railway.app') }, (noIndex && {
         robots: {
             index: false,
-            follow: false
-        }
+            follow: false,
+        },
     }));
 }
 exports.constructMetadata = constructMetadata;

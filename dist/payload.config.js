@@ -8,20 +8,20 @@ var bundler_webpack_1 = require("@payloadcms/bundler-webpack");
 var db_mongodb_1 = require("@payloadcms/db-mongodb");
 var richtext_slate_1 = require("@payloadcms/richtext-slate");
 var path_1 = __importDefault(require("path"));
-var users_1 = require("./collections/users");
+var Users_1 = require("./collections/Users");
 var dotenv_1 = __importDefault(require("dotenv"));
-var products_1 = require("./collections/products/products");
-var media_1 = require("./collections/media");
-var product_files_1 = require("./collections/product-files");
-var orders_1 = require("./collections/orders");
+var Products_1 = require("./collections/Products/Products");
+var Media_1 = require("./collections/Media");
+var ProductFile_1 = require("./collections/ProductFile");
+var Orders_1 = require("./collections/Orders");
 dotenv_1.default.config({
-    path: path_1.default.resolve(__dirname, '../.env')
+    path: path_1.default.resolve(__dirname, '../.env'),
 });
 exports.default = (0, config_1.buildConfig)({
     serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
-    collections: [users_1.Users, products_1.Products, media_1.Media, product_files_1.ProductFiles, orders_1.Orders],
+    collections: [Users_1.Users, Products_1.Products, Media_1.Media, ProductFile_1.ProductFiles, Orders_1.Orders],
     routes: {
-        admin: '/sell'
+        admin: '/sell',
     },
     admin: {
         user: 'users',
@@ -29,17 +29,17 @@ exports.default = (0, config_1.buildConfig)({
         meta: {
             titleSuffix: '- DigitalHippo',
             favicon: '/favicon.ico',
-            ogImage: '/thumbnail.jpg'
-        }
+            ogImage: '/thumbnail.jpg',
+        },
     },
     rateLimit: {
-        max: 2000
+        max: 2000,
     },
     editor: (0, richtext_slate_1.slateEditor)({}),
     db: (0, db_mongodb_1.mongooseAdapter)({
-        url: process.env.MONGODB_URL
+        url: process.env.MONGODB_URL,
     }),
     typescript: {
-        outputFile: path_1.default.resolve(__dirname, 'payload-types.ts')
-    }
+        outputFile: path_1.default.resolve(__dirname, 'payload-types.ts'),
+    },
 });

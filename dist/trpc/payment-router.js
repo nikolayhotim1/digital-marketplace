@@ -64,9 +64,9 @@ exports.paymentRouter = (0, trpc_1.router)({
                                 collection: 'products',
                                 where: {
                                     id: {
-                                        in: productIds
-                                    }
-                                }
+                                        in: productIds,
+                                    },
+                                },
                             })];
                     case 2:
                         products = (_b.sent()).docs;
@@ -78,8 +78,8 @@ exports.paymentRouter = (0, trpc_1.router)({
                                 data: {
                                     _isPaid: false,
                                     products: filteredProducts.map(function (prod) { return prod.id; }),
-                                    user: user.id
-                                }
+                                    user: user.id,
+                                },
                             })];
                     case 3:
                         order = _b.sent();
@@ -87,15 +87,15 @@ exports.paymentRouter = (0, trpc_1.router)({
                         filteredProducts.forEach(function (product) {
                             line_items.push({
                                 price: product.priceId,
-                                quantity: 1
+                                quantity: 1,
                             });
                         });
                         line_items.push({
-                            price: 'price_1Ofq1zGH4bEV8lbpD9RVtvhs',
+                            price: 'price_1OCeBwA19umTXGu8s4p2G3aX',
                             quantity: 1,
                             adjustable_quantity: {
-                                enabled: false
-                            }
+                                enabled: false,
+                            },
                         });
                         _b.label = 4;
                     case 4:
@@ -107,9 +107,9 @@ exports.paymentRouter = (0, trpc_1.router)({
                                 mode: 'payment',
                                 metadata: {
                                     userId: user.id,
-                                    orderId: order.id
+                                    orderId: order.id,
                                 },
-                                line_items: line_items
+                                line_items: line_items,
                             })];
                     case 5:
                         stripeSession = _b.sent();
@@ -139,9 +139,9 @@ exports.paymentRouter = (0, trpc_1.router)({
                                 collection: 'orders',
                                 where: {
                                     id: {
-                                        equals: orderId
-                                    }
-                                }
+                                        equals: orderId,
+                                    },
+                                },
                             })];
                     case 2:
                         orders = (_b.sent()).docs;
@@ -153,5 +153,5 @@ exports.paymentRouter = (0, trpc_1.router)({
                 }
             });
         });
-    })
+    }),
 });

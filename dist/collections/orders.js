@@ -3,20 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Orders = void 0;
 var yourOwn = function (_a) {
     var user = _a.req.user;
-    if (user.role === 'admin') {
+    if (user.role === 'admin')
         return true;
-    }
     return {
         user: {
-            equals: user === null || user === void 0 ? void 0 : user.id
-        }
+            equals: user === null || user === void 0 ? void 0 : user.id,
+        },
     };
 };
 exports.Orders = {
     slug: 'orders',
     admin: {
         useAsTitle: 'Your Orders',
-        description: 'A summary of all your orders on DigitalHippo.'
+        description: 'A summary of all your orders on DigitalHippo.',
     },
     access: {
         read: yourOwn,
@@ -31,7 +30,7 @@ exports.Orders = {
         create: function (_a) {
             var req = _a.req;
             return req.user.role === 'admin';
-        }
+        },
     },
     fields: [
         {
@@ -43,28 +42,28 @@ exports.Orders = {
                     return req.user.role === 'admin';
                 },
                 create: function () { return false; },
-                update: function () { return false; }
+                update: function () { return false; },
             },
             admin: {
-                hidden: true
+                hidden: true,
             },
-            required: true
+            required: true,
         },
         {
             name: 'user',
             type: 'relationship',
             admin: {
-                hidden: true
+                hidden: true,
             },
             relationTo: 'users',
-            required: true
+            required: true,
         },
         {
             name: 'products',
             type: 'relationship',
             relationTo: 'products',
             required: true,
-            hasMany: true
-        }
-    ]
+            hasMany: true,
+        },
+    ],
 };

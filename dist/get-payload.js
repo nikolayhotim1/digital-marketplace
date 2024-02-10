@@ -56,7 +56,7 @@ var path_1 = __importDefault(require("path"));
 var payload_1 = __importDefault(require("payload"));
 var nodemailer_1 = __importDefault(require("nodemailer"));
 dotenv_1.default.config({
-    path: path_1.default.resolve(__dirname, '../.env')
+    path: path_1.default.resolve(__dirname, '../.env'),
 });
 var transporter = nodemailer_1.default.createTransport({
     host: 'smtp.resend.com',
@@ -64,19 +64,19 @@ var transporter = nodemailer_1.default.createTransport({
     port: 465,
     auth: {
         user: 'resend',
-        pass: process.env.RESEND_API_KEY
-    }
+        pass: process.env.RESEND_API_KEY,
+    },
 });
 var cached = global.payload;
 if (!cached) {
     cached = global.payload = {
         client: null,
-        promise: null
+        promise: null,
     };
 }
-function getPayloadClient(_a) {
+var getPayloadClient = function (_a) {
     var _b = _a === void 0 ? {} : _a, initOptions = _b.initOptions;
-    return __awaiter(this, void 0, void 0, function () {
+    return __awaiter(void 0, void 0, void 0, function () {
         var _c, e_1;
         return __generator(this, function (_d) {
             switch (_d.label) {
@@ -90,8 +90,8 @@ function getPayloadClient(_a) {
                     if (!cached.promise) {
                         cached.promise = payload_1.default.init(__assign({ email: {
                                 transport: transporter,
-                                fromAddress: 'onboarding@resend.dev',
-                                fromName: 'DigitalHippo'
+                                fromAddress: 'hello@joshtriedcoding.com',
+                                fromName: 'DigitalHippo',
                             }, secret: process.env.PAYLOAD_SECRET, local: (initOptions === null || initOptions === void 0 ? void 0 : initOptions.express) ? false : true }, (initOptions || {})));
                     }
                     _d.label = 1;
@@ -110,5 +110,5 @@ function getPayloadClient(_a) {
             }
         });
     });
-}
+};
 exports.getPayloadClient = getPayloadClient;

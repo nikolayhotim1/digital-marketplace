@@ -72,7 +72,7 @@ exports.appRouter = (0, trpc_1.router)({
         .input(zod_1.z.object({
         limit: zod_1.z.number().min(1).max(100),
         cursor: zod_1.z.number().nullish(),
-        query: query_validator_1.QueryValidator
+        query: query_validator_1.QueryValidator,
     }))
         .query(function (_a) {
         var input = _a.input;
@@ -90,28 +90,28 @@ exports.appRouter = (0, trpc_1.router)({
                         Object.entries(queryOpts).forEach(function (_a) {
                             var key = _a[0], value = _a[1];
                             parsedQueryOpts[key] = {
-                                equals: value
+                                equals: value,
                             };
                         });
                         page = cursor || 1;
                         return [4 /*yield*/, payload.find({
                                 collection: 'products',
                                 where: __assign({ approvedForSale: {
-                                        equals: 'approved'
+                                        equals: 'approved',
                                     } }, parsedQueryOpts),
                                 sort: sort,
                                 depth: 1,
                                 limit: limit,
-                                page: page
+                                page: page,
                             })];
                     case 2:
                         _b = _c.sent(), items = _b.docs, hasNextPage = _b.hasNextPage, nextPage = _b.nextPage;
                         return [2 /*return*/, {
                                 items: items,
-                                nextPage: hasNextPage ? nextPage : null
+                                nextPage: hasNextPage ? nextPage : null,
                             }];
                 }
             });
         });
-    })
+    }),
 });
